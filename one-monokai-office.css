@@ -1,0 +1,276 @@
+﻿/* ============================================================
+ *  dsh — One Monokai Office Mode（办公模式）
+ * ------------------------------------------------------------
+ *  独立的主题覆盖层：不改动 dsh 源码，只覆盖 dsh 的 --dsw-* /
+ *  --shiki-* token，让 Web UI 全面向 VS Code 的 One Monokai
+ *  主题（azemoh.one-monokai）的质朴舒适看齐。
+ *
+ *  安装方式：见 deploy.ps1（一键部署 / 卸载）。
+ *
+ *  配色灵感来源：
+ *    VS Code "One Monokai" 主题
+ *    https://github.com/azemoh/vscode-one-monokai （MIT License）
+ *
+ *  关键设计原则（针对"炫彩/发光"问题的修正）：
+ *   - 主文字降哑：#d7dae0(0.85亮度) → #abb2bf(0.57亮度)，与 VS Code 正文一致
+ *   - 链接/强调蓝降饱和：#6a9bff → #61afef（One Monokai 链接蓝，不发荧光）
+ *   - 背景严格对齐 VS Code：#282c34 编辑器 / #21252B 面板
+ *   - 交互 hover 更克制，回归"纸质文稿"质感
+ * ============================================================ */
+
+body[data-ds-dark-theme] {
+  /* ---------- 背景层级（反色：对话界面深 / 侧边栏浅） ---------- */
+  /* 对话界面 = 原侧边栏深色 #21252b，让阅读区更沉静护眼 */
+  --dsw-alias-bg-base: #21252b;                /* 对话界面(主内容)背景 */
+  --dsw-alias-bg-layer-1: #262a32;             /* 浮层底层 */
+  --dsw-alias-bg-layer-2: #282c34;             /* 浮层中层 */
+  --dsw-alias-bg-layer-3: #2c313a;             /* 面板 / 页签 */
+  --dsw-alias-bg-module-platform: #262a32;     /* 模块平台 */
+  --dsw-alias-bg-overlay: #1d1f23;             /* 下拉 / 弹层 */
+  --dsw-alias-bg-mask-drop: rgba(33, 37, 43, 0.7);
+  --dsw-alias-bg-multi-select: #262a32;
+  --dsw-alias-bg-skeleton: rgba(255, 255, 255, 0.04);
+
+  /* 侧边栏 = 原对话界面浅色 #282c34，作视觉分离 */
+  --dsw-specific-sidebar-fill: #282c34;        /* 侧边栏(浅) = 原编辑器背景 */
+  --dsw-specific-sidebar-nav-item-active: #262a32;
+  --dsw-specific-sidebar-nav-item-hover: #24282f;
+  --dsw-specific-sidebar-nav-item-active-accent: #262a32;
+  --dsw-specific-menu: #21252b;
+  --dsw-specific-selector: #21252b;
+  --dsw-specific-input-major: #1d1f23;         /* input.background */
+  --dsw-specific-login-input: #1d1f23;
+  --dsw-specific-tip: #262a32;
+  --dsw-specific-bubble: #262a32;
+  --dsw-specific-bubble-highlight: #2c313a;
+
+  /* ---------- 文字层级（核心：主文字降哑 + One Monokai 米白） ---------- */
+  --dsw-alias-label-primary: #D4D4D4;          /* 正文 = One Monokai 实际正文(米白, VS Code 深色默认) */
+  --dsw-alias-label-primary-bluish: #D4D4D4;   /* 高亮标题 */
+  --dsw-alias-label-primary-inverted: #282c34;
+  --dsw-alias-label-primary-dimmed: #5c6370;   /* 注释级 */
+  --dsw-alias-label-secondary: #9da5b4;        /* statusBar.foreground */
+  --dsw-alias-label-tertiary: #7f848e;         /* 三级文字 */
+  --dsw-alias-label-caption: #6b7280;          /* 说明文字 */
+  --dsw-alias-label-dimmed: #5c6370;           /* 弱化 = comment */
+
+  /* ---------- 品牌 / 强调（降饱和，不发荧光） ---------- */
+  --dsw-alias-brand-primary: #D4D4D4;
+  --dsw-alias-brand-primary-invert: #282c34;
+  --dsw-alias-brand-text: #D4D4D4;
+  --dsw-alias-brand-primary-new-colorprimary-new-color: #528bff; /* button.background */
+  --dsw-alias-state-business-primary: #61afef; /* 链接蓝 = entity.name.class */
+  --dsw-alias-state-business-tertiary: #2c313a;
+  --dsw-alias-button-info-fill: #528bff;       /* 主按钮 */
+  --dsw-alias-button-info-hover: #61afef;
+  --dsw-alias-button-primary-fill: #528bff;
+  --dsw-alias-button-primary-hover: #61afef;
+  --dsw-alias-button-primary-dimmed: #2c313a;
+  --dsw-alias-button-contrast-fill: #abb2bf;
+  --dsw-alias-button-elevated-fill: #21252b;
+  --dsw-alias-button-floating-fill: #21252b;
+  --dsw-alias-button-floating-hover: #262a32;
+  --dsw-alias-button-ghost-active-border: #5c6370;
+  --dsw-alias-button-ghost-active-fill: #262a32;
+  --dsw-alias-button-ghost-active-hover: #2c313a;
+  --dsw-alias-button-tool-bar-fill: rgba(84, 85, 87, 0.4);
+  --dsw-alias-button-tool-bar-hover: rgba(84, 85, 87, 0.55);
+
+  /* ---------- 交互 hover（更克制） ---------- */
+  --dsw-alias-interactive-bg-hover: rgba(255, 255, 255, 0.05);
+  --dsw-alias-interactive-bg-active: rgba(255, 255, 255, 0.08);
+  --dsw-alias-interactive-bg-hover-solid: #262a32;
+  --dsw-alias-interactive-bg-hover-accent: rgba(255, 255, 255, 0.1);
+  --dsw-alias-interactive-bg-hover-danger: rgba(224, 108, 117, 0.12);
+
+  /* ---------- 边框（弱化） ---------- */
+  --dsw-alias-border-l1: rgba(255, 255, 255, 0.04);
+  --dsw-alias-border-l2: rgba(255, 255, 255, 0.08);
+  --dsw-alias-border-l2-darkmode-thin: rgba(255, 255, 255, 0.05);
+  --dsw-alias-border-l3: rgba(255, 255, 255, 0.12);
+  --dsw-alias-border-l4: rgba(255, 255, 255, 0.16);
+
+  /* ---------- 状态色（One Monokai 柔和版） ---------- */
+  --dsw-alias-state-success-primary: #98c379;  /* lime */
+  --dsw-alias-state-success-secondary: #7ba55f;
+  --dsw-alias-state-success-tertiary: #2c3a2a;
+  --dsw-alias-state-error-primary: #e06c75;    /* pink/red */
+  --dsw-alias-state-error-secondary: #c24038;
+  --dsw-alias-state-warn-primary: #e5c07b;     /* gold */
+  --dsw-alias-state-warn-secondary: #d19a66;
+  --dsw-alias-state-warn-label: #d19a66;
+  --dsw-alias-state-warn-tertiary: #3a352a;
+
+  /* ---------- 滚动条（One Monokai 灰） ---------- */
+  --dsw-alias-scrollbar-bg-l1: #4e5666;
+  --dsw-alias-scrollbar-bg-l2: #4e5666;
+  --dsw-alias-scrollbar-hover-l1: #5a6375;
+  --dsw-alias-scrollbar-hover-l2: #5a6375;
+
+  /* ---------- 代码块 / 内联代码（对标 VS Code: 淡灰底 + 金黄字） ---------- */
+  /* VS Code textCodeBlock.background = rgba(220,220,220,0.1) 淡灰 */
+  --dsw-alias-markdown-code-block: rgba(220, 220, 220, 0.1);
+  --dsw-alias-markdown-code-block-banner: rgba(220, 220, 220, 0.1);
+  --dsw-alias-markdown-inline-code: rgba(220, 220, 220, 0.12);
+  --dsw-alias-markdown-citation: #262a32;
+  --dsw-alias-markdown-placeholder: #5c6370;
+  --dsw-alias-markdown-tag: rgba(220, 220, 220, 0.08);
+  --dsw-alias-markdown-code-segment-selected: rgba(220, 220, 220, 0.12);
+  --dsw-alias-markdown-code-segment-unselected: rgba(220, 220, 220, 0.08);
+}
+
+/* ---------- 代码语法高亮（One Monokai 全色） ---------- */
+body[data-ds-dark-theme] {
+  --shiki-token-constant: #c678dd;   /* number/constant = purple */
+  --shiki-token-string: #e5c07b;     /* string = gold */
+  --shiki-token-comment: #5c6370;    /* comment */
+  --shiki-token-keyword: #e06c75;    /* keyword = pink */
+  --shiki-token-parameter: #d19a66;  /* parameter = brown */
+  --shiki-token-function: #61afef;   /* function = blue */
+  --shiki-token-string-expression: #e5c07b;
+  --shiki-token-punctuation: #D4D4D4;
+  --shiki-token-link: #61afef;
+}
+
+/* ============================================================
+ *  可选的"去炫彩"微调（默认全部开启，办公模式主旨）
+ *  若想保留某类特效，删除对应规则即可。
+ * ============================================================ */
+
+/* 1) 压掉渐变发光文字（dsh 自带的 gradient-shadow-text 特效） */
+body[data-ds-dark-theme] [class*="gradient"],
+body[data-ds-dark-theme] [style*="background-clip: text"] {
+  background-image: none !important;
+  -webkit-background-clip: initial !important;
+  color: var(--dsw-alias-label-primary) !important;
+}
+
+/* 2) 弱化 markdown 标题的发光/加亮，回归哑光层次 */
+body[data-ds-dark-theme] h1,
+body[data-ds-dark-theme] h2,
+body[data-ds-dark-theme] h3 {
+  color: var(--dsw-alias-label-primary-bluish) !important;
+  text-shadow: none !important;
+}
+
+/* ============================================================
+ *  全面对标 VS Code + One Monokai：字体与字重
+ *  - 对话/界面字体: Segoe UI + 微软雅黑 (Copilot Chat 同款 UI 字体)
+ *  - 代码块字体: Consolas (编辑器代码同款)
+ *  One Monokai 强调靠颜色而非粗体, 故全面降字重去"胖感"
+ * ============================================================ */
+
+/* 对话/界面字体栈: Segoe UI + 微软雅黑 (对标 VS Code Copilot Chat)
+   注意: monospace 必须放在 Microsoft YaHei 之后, 否则 Windows 上
+   monospace 的中文回退会落到宋体(SimSun)而非微软雅黑 */
+body {
+  --dsw-font-family: 'Segoe UI', -apple-system, 'Microsoft YaHei', 'PingFang SC', sans-serif !important;
+  --ds-font-family-code: Consolas, 'Courier New', 'Microsoft YaHei', monospace, sans-serif !important;
+}
+body[data-ds-dark-theme] {
+  --dsw-font-family: 'Segoe UI', -apple-system, 'Microsoft YaHei', 'PingFang SC', sans-serif !important;
+  --ds-font-family-code: Consolas, 'Courier New', 'Microsoft YaHei', monospace, sans-serif !important;
+}
+body,
+body[data-ds-dark-theme] {
+  font-family: var(--dsw-font-family);
+}
+
+/* 字重全面降档: 去"胖感", 对标 One Monokai 的克制
+   600/700 的 strong/标题降到 600 (保留层级但不过度) */
+body[data-ds-dark-theme] strong,
+body[data-ds-dark-theme] b {
+  font-weight: 600 !important;
+}
+/* 标题字重降到 600 (VS Code markdown 标题为 semibold 观感) */
+body[data-ds-dark-theme] h1,
+body[data-ds-dark-theme] h2,
+body[data-ds-dark-theme] h3,
+body[data-ds-dark-theme] h4 {
+  font-weight: 600 !important;
+}
+/* 其余 500 字重的界面元素(侧边栏标题/tab/触发器等)统一回 400 */
+body[data-ds-dark-theme] [class*="title"],
+body[data-ds-dark-theme] [class*="Label"],
+body[data-ds-dark-theme] [class*="label"],
+body[data-ds-dark-theme] [class*="tab"],
+body[data-ds-dark-theme] [class*="Tab"],
+body[data-ds-dark-theme] [class*="trigger"],
+body[data-ds-dark-theme] [class*="crumb"] {
+  font-weight: 400 !important;
+}
+
+/* ============================================================
+ *  C 方案: 关闭字体伪造合成 (font-synthesis)
+ *  防止浏览器在字重档位缺失时"伪造加粗"字形, 让 400 保持纯粹
+ * ============================================================ */
+body[data-ds-dark-theme],
+body[data-ds-dark-theme] * {
+  font-synthesis: none !important;
+  -webkit-font-synthesis: none !important;
+}
+
+/* ============================================================
+ *  代码块配色对标 VS Code + One Monokai
+ *  - 底色: 淡灰 rgba(220,220,220,0.1) (VS Code textCodeBlock.background)
+ *  - 普通代码文字: 金黄 #e5c07b (One Monokai 字符串色)
+ *  说明: 仅覆盖无语法高亮的代码文字; shiki 高亮 token 仍保留多彩
+ * ============================================================ */
+body[data-ds-dark-theme] pre {
+  color: #e5c07b !important;   /* 代码块默认文字 = 金黄 */
+}
+/* 内联代码同样金黄 (VS Code 内联 code 文字偏黄) */
+body[data-ds-dark-theme] :not(pre) > code {
+  color: #e5c07b !important;
+}
+/* 代码块/内联代码底色: 淡灰 (与 token 定义一致, 兜底) */
+body[data-ds-dark-theme] pre,
+body[data-ds-dark-theme] .md-code-block,
+body[data-ds-dark-theme] :not(pre) > code {
+  background-color: rgba(220, 220, 220, 0.1) !important;
+}
+
+/* ============================================================
+ *  链接与文件引用对标 VS Code Copilot Chat
+ *  - markdown 真正超链接 <a>: 链接蓝 #61afef, hover 加下划线
+ *  - 文件引用 chip (fileLink/fileMention/工具文件):
+ *    浅色背景框 + 正常文字色 (Copilot Chat 文件引用样式)
+ * ============================================================ */
+/* markdown 真正超链接: 蓝 */
+body[data-ds-dark-theme] a {
+  color: #61afef !important;
+  text-decoration: none !important;
+}
+body[data-ds-dark-theme] a:hover,
+body[data-ds-dark-theme] a:focus {
+  color: #61afef !important;
+  text-decoration: underline !important;
+  text-decoration-color: #61afef !important;
+}
+
+/* 文件引用 chip: 浅色背景框 + 正常文字色 (对标 Copilot Chat 文件引用) */
+body[data-ds-dark-theme] [class*="fileLink"],
+body[data-ds-dark-theme] [class*="fileMention"],
+body[data-ds-dark-theme] [class*="file"] {
+  color: var(--dsw-alias-label-primary) !important;
+  background-color: rgba(255, 255, 255, 0.06) !important;
+  border-radius: 6px !important;
+  padding: 1px 8px !important;
+  text-decoration: none !important;
+  display: inline-block !important;
+}
+/* 文件 chip hover: 略微提亮背景, 保持正常文字色 */
+body[data-ds-dark-theme] [class*="fileLink"]:hover,
+body[data-ds-dark-theme] [class*="fileLink"]:focus,
+body[data-ds-dark-theme] [class*="fileMention"]:hover,
+body[data-ds-dark-theme] [class*="fileMention"]:focus {
+  color: var(--dsw-alias-label-primary) !important;
+  background-color: rgba(255, 255, 255, 0.12) !important;
+  text-decoration: none !important;
+}
+/* 文件 chip 内子元素继承文字色 */
+body[data-ds-dark-theme] [class*="fileLink"] *,
+body[data-ds-dark-theme] [class*="fileMention"] * {
+  color: inherit !important;
+}
+

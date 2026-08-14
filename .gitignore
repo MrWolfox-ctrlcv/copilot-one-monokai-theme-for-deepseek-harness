@@ -1,0 +1,18 @@
+# 备份文件（每次部署前自动生成的快照，不入库）
+*.backup-*.css
+*.backup-*.ps1
+
+# 运行时生成的字体覆盖（由 make-font-size.ps1 生成）
+# 说明: font-size.css 是生成产物, 可重新生成; 但保留版本便于开箱即用
+# 如希望强制重新生成, 可取消下面注释:
+# font-size.css
+
+# 字号配置（make-font-size.ps1 读写）
+# font-size.conf
+
+# 测试预览页
+test-preview.html
+
+# 系统文件
+.DS_Store
+Thumbs.db
