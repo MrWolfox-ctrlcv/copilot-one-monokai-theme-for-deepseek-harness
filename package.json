@@ -5,7 +5,15 @@
   "type": "module",
   "main": "lib/index.js",
   "license": "MIT",
-  "author": "yaoshunwen",
+  "author": "wolfox",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MrWolfox-ctrlcv/copilot-one-monokai-theme-for-deepseek-harness.git"
+  },
+  "homepage": "https://github.com/MrWolfox-ctrlcv/copilot-one-monokai-theme-for-deepseek-harness",
+  "publishConfig": {
+    "access": "public"
+  },
   "keywords": [
     "deepseek-harness",
     "dsh",
