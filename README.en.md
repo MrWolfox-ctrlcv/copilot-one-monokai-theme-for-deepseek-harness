@@ -1,4 +1,4 @@
-# dsh-theme · One Monokai (Office Mode)
+# dsh-oneoffice · One Monokai (Office Mode)
 
 An **One Monokai office-mode** theme pack for the [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness) web UI. It is an independent CSS override layer — it never touches dsh source, and deploys/uninstalls with one script.
 
@@ -21,7 +21,23 @@ An **One Monokai office-mode** theme pack for the [DeepSeek Harness](https://git
 | `README.en.md` | This English README |
 | `LICENSE` | MIT license (includes original theme copyright) |
 
-## 🚀 Quick Start
+## � Install as a dsh plugin (recommended, market-ready)
+
+This repo is also a standard **dsh theme plugin** — installable from the plugin market (in-app `dshmarket` / [awesome-dsh-plugin.com](https://awesome-dsh-plugin.com)) or the CLI:
+
+```bash
+# CLI (needs dsh CLI)
+dsh plugin --profile web add github:MrWolfox-ctrlcv/dsh-oneoffice
+
+# or from npm once published
+dsh plugin --profile web add dsh-oneoffice
+```
+
+After installing, toggle it in **Settings → General → One Monokai office theme**. When on it injects the full overlay; when off it removes it entirely — no source changes.
+
+> **Strong-compat iframe theming**: some plugins (e.g. `dsh-synapse` map) render in nested same-origin iframes that a parent `<style>` cannot reach. While enabled, the theme automatically injects a matching overlay into those iframes too, unifying buttons / sidebar / inputs / cards / view-switches onto the One Monokai dark palette. Disabling or uninstalling removes it cleanly.
+
+## �🚀 Quick Start
 
 ```powershell
 # Deploy (auto-locate repo + restart dsh)

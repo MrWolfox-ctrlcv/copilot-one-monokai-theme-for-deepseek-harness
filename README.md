@@ -1,4 +1,4 @@
-# dsh-theme · One Monokai（办公模式）
+# dsh-oneoffice · One Monokai（办公模式）
 
 给 [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness) Web UI 提供的 **One Monokai 办公模式**主题包。独立 CSS 覆盖层，不改动 dsh 源码，可一键部署 / 卸载。
 
@@ -19,6 +19,10 @@ dsh plugin --profile web add dsh-oneoffice
 安装后在 **设置 → 通用 → One Monokai 办公主题** 可随时开启 / 关闭。主题处于开启时注入整份覆盖层，关闭时完全移除，不改任何源码。
 
 > 主题以 `<style>` 覆盖层注入，对 dsh 升级稳定；重新安装或升级客户端后保持原样。
+
+### 强兼容：嵌套 iframe 面板（如会话地图）也一并适配
+
+部分插件（如 `dsh-synapse` 会话地图）用**嵌套 iframe** 渲染独立页面，父文档 CSS 无法穿透。本主题在开启时会自动向同源的 iframe 注入配套覆盖层，把其中的**按钮 / 侧边栏 / 输入框 / 卡片 / 视图开关**统一套用 One Monokai 深色色板——不再出现"面板是亮的、周围是暗的"的不协调。关闭主题或卸载后自动移除，不影响插件本身。
 
 ## 🧩 插件包结构
 
