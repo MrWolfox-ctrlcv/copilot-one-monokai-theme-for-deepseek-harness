@@ -13,6 +13,9 @@
 # 测试预览页
 test-preview.html
 
+# 本地文档（不入库）
+*.docx
+
 # 系统文件
 .DS_Store
 Thumbs.db
