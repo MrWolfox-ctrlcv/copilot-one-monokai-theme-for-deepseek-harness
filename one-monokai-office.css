@@ -293,8 +293,8 @@ body[data-ds-dark-theme] .dsh-synapse-switch button:hover {
 }
 body[data-ds-dark-theme] .dsh-synapse-switch button[aria-pressed="true"],
 body[data-ds-dark-theme] .dsh-synapse-switch button.active {
-  /* 参考右侧侧边栏 Explorer 选中质感的深灰（VS Code 侧边栏选中） */
-  background: #262a32 !important;   /* 侧边栏 nav 选中灰（比面板 #282c34 深一档） */
-  color: #d4d4d4 !important;        /* 正文米白的文字，不刺眼 */
+  /* 选中态 = 半透明白微亮（同右侧 Explorer 激活标签 rgba(255,255,255,0.08)） */
+  background: rgba(255, 255, 255, 0.08) !important;
+  color: #d4d4d4 !important;        /* 正文米白文字 */
 }
 
