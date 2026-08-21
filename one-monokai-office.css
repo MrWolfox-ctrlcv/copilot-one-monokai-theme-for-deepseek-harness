@@ -274,3 +274,26 @@ body[data-ds-dark-theme] [class*="fileMention"] * {
   color: inherit !important;
 }
 
+/* ============================================================
+ *  dsh-synapse —— 会话地图 / 对话 切换浮层（顶部居中胶囊）
+ *  默认插件的硬编码浅色（白底/灰字）在深色 UI 里突兀，归一到
+ *  One Monokai 深色质感。
+ * ============================================================ */
+body[data-ds-dark-theme] .dsh-synapse-switch {
+  background: #262a32 !important;          /* 浮层中层，比对话界面略亮 */
+  border: 1px solid #333a43 !important;    /* 柔和深色描边 */
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35) !important;
+}
+body[data-ds-dark-theme] .dsh-synapse-switch button {
+  color: #abb2bf !important;               /* One Monokai 正文哑光灰 */
+}
+body[data-ds-dark-theme] .dsh-synapse-switch button:hover {
+  background: rgba(255, 255, 255, 0.08) !important;
+  color: #d4d4d4 !important;
+}
+body[data-ds-dark-theme] .dsh-synapse-switch button[aria-pressed="true"],
+body[data-ds-dark-theme] .dsh-synapse-switch button.active {
+  background: #528bff !important;          /* 对齐主题强调蓝（不发光） */
+  color: #ffffff !important;
+}
+
