@@ -293,8 +293,8 @@ body[data-ds-dark-theme] .dsh-synapse-switch button:hover {
 }
 body[data-ds-dark-theme] .dsh-synapse-switch button[aria-pressed="true"],
 body[data-ds-dark-theme] .dsh-synapse-switch button.active {
-  /* VS Code 标签选中质感：亮底 + 深色文字（区别于背景的"反色"） */
-  background: #d4d4d4 !important;   /* 米白亮底（One Monokai 正文色） */
-  color: #1d1f23 !important;        /* 深色文字（对话界面底色） */
+  /* 参考右侧侧边栏 Explorer 选中质感的深灰（VS Code 侧边栏选中） */
+  background: #262a32 !important;   /* 侧边栏 nav 选中灰（比面板 #282c34 深一档） */
+  color: #d4d4d4 !important;        /* 正文米白的文字，不刺眼 */
 }
 
