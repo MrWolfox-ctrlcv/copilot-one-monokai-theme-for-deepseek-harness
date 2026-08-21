@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>One Monokai 办公主题预览 | One Monokai Office preview</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  :root { font-family: "Consolas", "Microsoft YaHei", system-ui, sans-serif; }
+  /* 该预览页模拟 DeepSeek Harness Web UI 的深色对话界面 + One Monokai 覆盖层 */
+  body { background: #21252b; color: #abb2bf; min-height: 100vh; display: flex; }
+  .sidebar {
+    width: 220px; background: #282c34; border-right: 1px solid #1d1f23;
+    padding: 16px; display: flex; flex-direction: column; gap: 6px;
+  }
+  .sidebar .logo { color: #61afef; font-weight: 700; font-size: 14px; margin-bottom: 12px; }
+  .sidebar .item { padding: 6px 10px; border-radius: 4px; color: #abb2bf; font-size: 12px; }
+  .sidebar .item.on { background: #262a32; color: #d4d4d4; }
+  .main { flex: 1; display: flex; flex-direction: column; }
+  .topbar {
+    height: 40px; background: #1d1f23; border-bottom: 1px solid #181b20;
+    display: flex; align-items: center; padding: 0 16px; gap: 12px; font-size: 12px;
+  }
+  .topbar .tag { color: #98c379; }
+  .chat { flex: 1; padding: 24px; display: flex; flex-direction: column; gap: 14px; overflow: auto; }
+  .bubble {
+    max-width: 70%; padding: 10px 14px; border-radius: 8px; font-size: 13px; line-height: 1.6;
+  }
+  .bubble.user { align-self: flex-end; background: #2c313a; color: #d4d4d4; }
+  .bubble.assistant { align-self: flex-start; background: #262a32; color: #d4d4d4; }
+  .bubble code { color: #e5c07b; background: rgba(220,220,220,0.1); padding: 1px 5px; border-radius: 3px; }
+  .bubble a { color: #61afef; text-decoration: none; }
+  .tool { background: #1f2329; border: 1px solid #333a43; border-radius: 6px; padding: 8px 12px; font-size: 12px; color: #98c379; }
+  .composer {
+    height: 56px; background: #1d1f23; border-top: 1px solid #181b20;
+    display: flex; align-items: center; padding: 0 16px; gap: 10px; font-size: 13px; color: #5c6370;
+  }
+  .composer .dot { width: 24px; height: 24px; border-radius: 50%; background: #2c313a; }
+  .kw { color: #e06c75; } .fn { color: #61afef; } .st { color: #e5c07b; } .nu { color: #c678dd; }
+</style>
+</head>
+<body>
+  <div class="sidebar">
+    <div class="logo">DSH · 会话</div>
+    <div class="item on">今日 · One Monokai 主题</div>
+    <div class="item">昨日 · 办公模式还原</div>
+    <div class="item">归档 · 项目笔记</div>
+    <div class="item">收藏 · 代码片段</div>
+  </div>
+  <div class="main">
+    <div class="topbar"><span class="tag">●</span> deepseek-chat · <span>办公主题</span></div>
+    <div class="chat">
+      <div class="bubble user">帮我用一个 One Monokai 风格的主题展示一下效果</div>
+      <div class="bubble assistant">
+        好的，这是 <a href="#">One Monokai 办公主题</a> 的预览。主文字降哑为
+        <code#abb2bf</code>，链接蓝降饱和，背景严格对齐 VS Code 的
+        <code#282c34</code>。代码高亮采用
+        <span class="kw">keyword</span> /
+        <span class="st">string</span> /
+        <span class="fn">function</span> /
+        <span class="nu">number</span> 的 One Monokai 全套配色。
+      </div>
+      <div class="bubble user">看起来非常护眼舒适</div>
+      <div class="bubble assistant">
+        是的，办公模式的核心理念就是：<br/>
+        <span class="kw">回归纸质文稿</span> 的质朴质感，缓解长时间使用的视觉疲劳。
+      </div>
+      <div class="tool">✓ 已应用主题覆盖层（--dsw-* / --shiki-* token）</div>
+    </div>
+    <div class="composer"><div class="dot"></div> 输入消息…</div>
+  </div>
+</body>
+</html>

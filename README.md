@@ -4,6 +4,35 @@
 
 > 目标：让 dsh 的 Web UI 从炫彩高科技显示屏回归传统的办公质感，缓解长时间使用的视觉疲劳。
 
+## 📦 作为 dsh 插件安装（推荐，可上架市场）
+
+本仓库同时是标准 **dsh 主题插件包**，可从插件市场（内置 `dshmarket` / [awesome-dsh-plugin.com](https://awesome-dsh-plugin.com)）或命令行一键安装：
+
+```bash
+# 命令行安装（需已安装 dsh CLI）
+dsh plugin --profile web add github:MrWolfox-ctrlcv/copilot-one-monokai-theme-for-deepseek-harness
+
+# 或从 npm 安装（发布后）
+dsh plugin --profile web add copilot-one-monokai-office
+```
+
+安装后在 **设置 → 通用 → One Monokai 办公主题** 可随时开启 / 关闭。主题处于开启时注入整份覆盖层，关闭时完全移除，不改任何源码。
+
+> 主题以 `<style>` 覆盖层注入，对 dsh 升级稳定；重新安装或升级客户端后保持原样。
+
+## 🧩 插件包结构
+
+| 文件 | 作用 |
+|---|---|
+| `package.json` | dsh 插件清单（`dsh.bundle.patch` + `dsh.client.inject`） |
+| `lib/index.js` | host 半（no-op），让 client bundle 挂载 |
+| `cordis.patch.yml` | 挂载清单 |
+| `src/bundle.template.js` + `scripts/build.mjs` | 从 `one-monokai-office.css` 生成 `client.js` |
+| `client.js` | 浏览器端 bundle：注入主题 + 设置开关 |
+| `preview.html` | 市场上架预览页 |
+
+重新构建：`npm run build`（或 `node scripts/build.mjs`）。
+
 ## ✨ 特性
 
 - **全面向 VS Code 的 One Monokai 看齐**：主文字降哑、链接蓝降饱和、背景严格对齐 `#282c34` 系
