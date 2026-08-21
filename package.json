@@ -1,5 +1,5 @@
 {
-  "name": "copilot-one-monokai-office",
+  "name": "dsh-oneoffice",
   "version": "1.0.0",
   "description": "One Monokai (office mode) theme for DeepSeek Harness Web UI — a cozy, low-glare CSS overlay aligned with VS Code's One Monokai. · DeepSeek Harness 办公主题：One Monokai 质感，护眼舒适。",
   "type": "module",
@@ -8,9 +8,9 @@
   "author": "wolfox",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/MrWolfox-ctrlcv/copilot-one-monokai-theme-for-deepseek-harness.git"
+    "url": "git+https://github.com/MrWolfox-ctrlcv/dsh-oneoffice.git"
   },
-  "homepage": "https://github.com/MrWolfox-ctrlcv/copilot-one-monokai-theme-for-deepseek-harness",
+  "homepage": "https://github.com/MrWolfox-ctrlcv/dsh-oneoffice",
   "publishConfig": {
     "access": "public"
   },

@@ -1,4 +1,4 @@
-/* copilot-one-monokai-office — zero-dependency build script.
+/* dsh-oneoffice — zero-dependency build script.
  *
  * Reads package.json (plugin id) and one-monokai-office.css, extracts the
  * iframe overlay block (between __OMO_IFRAME__ and __END_OMO_IFRAME__)

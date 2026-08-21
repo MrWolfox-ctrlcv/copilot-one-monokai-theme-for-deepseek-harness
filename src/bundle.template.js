@@ -1,4 +1,4 @@
-/* copilot-one-monokai-office — client bundle template.
+/* dsh-oneoffice — client bundle template.
  *
  * This file is NOT served directly. scripts/build.mjs replaces the two
  * placeholder tokens (the package id and the inlined theme CSS) and writes
@@ -217,9 +217,9 @@ window.__ModuleLoader__.load({
 					iframeTimer = null;
 				}
 				applyIframeTheme(false);
-			}, "copilot-one-monokai-office: overlay cleanup");
+			}, "dsh-oneoffice: overlay cleanup");
 
-			ctx.effect(() => ctx.locale.register(SETTINGS_NS, { zh, en }), "copilot-one-monokai-office: settings row dictionaries");
+			ctx.effect(() => ctx.locale.register(SETTINGS_NS, { zh, en }), "dsh-oneoffice: settings row dictionaries");
 
 			const injected = (actions) => {
 				bound = actions;

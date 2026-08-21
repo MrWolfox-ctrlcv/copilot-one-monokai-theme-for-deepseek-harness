@@ -10,10 +10,10 @@
 
 ```bash
 # 命令行安装（需已安装 dsh CLI）
-dsh plugin --profile web add github:MrWolfox-ctrlcv/copilot-one-monokai-theme-for-deepseek-harness
+dsh plugin --profile web add github:MrWolfox-ctrlcv/dsh-oneoffice
 
 # 或从 npm 安装（发布后）
-dsh plugin --profile web add copilot-one-monokai-office
+dsh plugin --profile web add dsh-oneoffice
 ```
 
 安装后在 **设置 → 通用 → One Monokai 办公主题** 可随时开启 / 关闭。主题处于开启时注入整份覆盖层，关闭时完全移除，不改任何源码。
