@@ -37,6 +37,10 @@ window.__ModuleLoader__.load({
 		/** Full One Monokai office-mode overlay, inlined at build time. */
 		const THEME_CSS = __THEME_CSS__;
 
+		/** One Monokai overlay for nested iframes (dsh-synapse map), build-time inlined. */
+		const IFRAME_CSS = __IFRAME_CSS__;
+		const IFRAME_TAG_ID = SOURCE + "/SynapseIframe.css";
+
 		/** data-plugin-css tag id for the overlay <style> element. */
 		const TAG_ID = SOURCE + "/OneMonokaiOffice.css";
 
@@ -87,6 +91,43 @@ window.__ModuleLoader__.load({
 			return tag;
 		}
 
+		/**
+		 * Inject / remove the One Monokai overlay inside nested (same-origin)
+		 * iframes — e.g. the dsh-synapse map renders in an <iframe src="/synapse/">
+		 * whose document is NOT styled by the parent's <style>. We reach into it
+		 * via contentDocument (same-origin) and add our overlay there.
+		 * @param enabled - true to inject, false to remove.
+		 * @returns the count of iframes successfully themed.
+		 */
+		function applyIframeTheme(enabled) {
+			if (typeof document === "undefined" || !IFRAME_CSS) return 0;
+			let themed = 0;
+			const frames = Array.from(document.querySelectorAll("iframe"));
+			for (const frame of frames) {
+				let idoc;
+				try {
+					idoc = frame.contentDocument;
+					if (!idoc) continue;
+				} catch {
+					continue; // cross-origin — skip silently
+				}
+				const existing = idoc.getElementById(IFRAME_TAG_ID);
+				if (!enabled) {
+					if (existing) { existing.remove(); }
+					continue;
+				}
+				if (existing) { existing.textContent = IFRAME_CSS; themed++; continue; }
+				const tag = idoc.createElement("style");
+				tag.id = IFRAME_TAG_ID;
+				tag.dataset.plugin = SOURCE;
+				tag.dataset.pluginCss = IFRAME_TAG_ID;
+				tag.textContent = IFRAME_CSS;
+				idoc.head.appendChild(tag);
+				themed++;
+			}
+			return themed;
+		}
+
 		/** Inline CSS for the settings row. */
 		const css = "._omo_group{border-bottom:1px solid var(--dsw-alias-border-l2);flex-direction:column;gap:8px;padding:16px 0;display:flex}._omo_title{color:var(--dsw-alias-label-primary);font-size:14px;font-weight:400;line-height:22px}._omo_toggleRow{flex-wrap:wrap;align-items:center;gap:8px;display:flex}";
 		const tagId = SOURCE + "/ToggleRow.module.css";
@@ -135,13 +176,26 @@ window.__ModuleLoader__.load({
 			const store = createToggleStore();
 			let bound;
 			let styleTag = null;
+			let iframeTimer = null;
 
+			/**
+			 * Apply theme visibility: parent overlay <style> + nested-iframe
+			 * overlay. The iframe (synapse map) may mount lazily, so when the
+			 * theme is on we keep a light 2s retry that only touches iframes.
+			 */
 			const applyStyle = (enabled) => {
 				if (enabled && styleTag === null) {
 					styleTag = createStyle();
 				} else if (!enabled && styleTag !== null) {
 					styleTag.remove();
 					styleTag = null;
+				}
+				applyIframeTheme(enabled);
+				if (enabled && iframeTimer === null) {
+					iframeTimer = setInterval(() => { applyIframeTheme(true); }, 2000);
+				} else if (!enabled && iframeTimer !== null) {
+					clearInterval(iframeTimer);
+					iframeTimer = null;
 				}
 			};
 
@@ -158,6 +212,11 @@ window.__ModuleLoader__.load({
 					styleTag.remove();
 					styleTag = null;
 				}
+				if (iframeTimer !== null) {
+					clearInterval(iframeTimer);
+					iframeTimer = null;
+				}
+				applyIframeTheme(false);
 			}, "copilot-one-monokai-office: overlay cleanup");
 
 			ctx.effect(() => ctx.locale.register(SETTINGS_NS, { zh, en }), "copilot-one-monokai-office: settings row dictionaries");

@@ -298,3 +298,109 @@ body[data-ds-dark-theme] .dsh-synapse-switch button.active {
   color: #d4d4d4 !important;        /* 正文米白文字 */
 }
 
+/* ============================================================
+ *  dsh-synapse 会话地图（嵌套 iframe）内部深色覆盖 —— 强兼容版
+ *  父文档 CSS 无法穿透 iframe，该段由 client bundle 提取后注入
+ *  iframe 的 <head>。不依赖特定类名，用通用元素选择器对面板内
+ *  所有按钮 / 输入 / 下拉 / 卡片 / 侧边栏等统一套用预设 One Monokai 色板。
+ *  __OMO_IFRAME__
+ * ============================================================ */
+html:not(#_), body:not(#_) {
+  background: #21252b !important;
+  color: #abb2bf !important;
+}
+
+/* 侧边栏 / 顶栏 / 主区 / 画布 */
+.sidebar,
+.topbar,
+.main-stage,
+.canvas-tabs,
+.canvas-controls,
+.detail-panel,
+.compare-panel { background: #262a32 !important; border-color: #333a43 !important; color: #abb2bf !important; }
+.canvas-viewport { background: #1b1e24 !important; }
+.pane,
+.panel { background: #21252b !important; border-color: #333a43 !important; }
+
+/* 卡片 / 气泡 / 会话卡：统一面板底色 */
+.thread-card,
+.card,
+.bubble,
+.status-message {
+  background: #262a32 !important;
+  border-color: #333a43 !important;
+  color: #d4d4d4 !important;
+  box-shadow: none !important;
+}
+
+/* ---- 按钮：统一预设配色（核心诉求：不再是一排亮白） ---- */
+button {
+  background: #2c313a !important;
+  border-color: #4a5162 !important;
+  color: #d4d4d4 !important;
+}
+button:hover:not(:disabled) {
+  background: #323742 !important;
+  border-color: #5c6370 !important;
+  color: #ffffff !important;
+}
+button:disabled { opacity: 0.5 !important; color: #7f8a9c !important; }
+/* 主按钮（primary / active）：品牌蓝统一 */
+button.primary,
+button.active,
+.branch-button,
+.canvas-tabs button.active { background: #528bff !important; border-color: #528bff !important; color: #ffffff !important; }
+button.primary:hover,
+button.active:hover { background: #61afef !important; border-color: #61afef !important; color: #ffffff !important; }
+/* 幽灵 / 图标按钮：同深灰底但 hover 更强（保持统一不刺眼） */
+button:not(.primary):not(.active):hover { background: #323742 !important; color: #ffffff !important; }
+.sidebar-toggle,
+.new-workspace { background: #2c313a !important; border-color: #4a5162 !important; }
+
+/* 输入 / 下拉 / 选择器 */
+input,
+select,
+textarea {
+  background: #1d1f23 !important;
+  border-color: #3b4150 !important;
+  color: #d4d4d4 !important;
+}
+input:focus,
+select:focus,
+textarea:focus { border-color: #528bff !important; outline: none !important; }
+.workspace-select select,
+.workspace-label select { background: #1d1f23 !important; border-color: #3b4150 !important; color: #d4d4d4 !important; }
+
+/* 树 / 列表行 */
+.tree-row,
+.list-row { color: #abb2bf !important; background: transparent !important; }
+.tree-row:hover,
+.list-row:hover { background: rgba(255, 255, 255, 0.06) !important; }
+.tree-row.active,
+.list-row.active { background: rgba(255, 255, 255, 0.1) !important; color: #d4d4d4 !important; font-weight: 600 !important; }
+
+/* 视图切换胶囊（iframe 内）+ 侧边栏开关 */
+.view-switch { background: #262a32 !important; border-color: #3b4150 !important; }
+.view-switch button { color: #abb2bf !important; background: transparent !important; }
+.view-switch button:hover { background: rgba(255, 255, 255, 0.08) !important; color: #d4d4d4 !important; }
+.view-switch button.active { background: #528bff !important; color: #ffffff !important; }
+
+/* 文字层级 */
+.sidebar-heading,
+.workspace-label,
+.thread-meta,
+.canvas-controls span,
+.status-message { color: #7f8a9c !important; }
+.status-message { background: #21252b !important; border-color: #7a3038 !important; color: #e06c75 !important; }
+a { color: #61afef !important; text-decoration: none !important; }
+a:hover { text-decoration: underline !important; }
+
+/* 滚动条：One Monokai 灰 */
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-thumb { background: #4e5666 !important; border-radius: 5px; }
+::-webkit-scrollbar-track { background: transparent !important; }
+
+/* 选中态（拖动/选区） */
+::selection { background: rgba(82, 139, 255, 0.3) !important; }
+/* __END_OMO_IFRAME__ */
+
